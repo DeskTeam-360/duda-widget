@@ -167,7 +167,7 @@ async function partNumber(partType, partNumber) {
     const resultsBodyApp = document.getElementById("resultsBodyApp");
     resultsBodyApp.innerHTML = '';
     const row = document.createElement('tr');
-    if (datas[0]!=null && datas[0]!=[]){
+    if (datas[0] != null && datas[0] != []) {
         row.innerHTML = `
                     <td><a onclick="partNumberDetailCall('mw','${datas[0]['mw']}',null,'${partType}')" href="#">${datas[0]['mw']}</a></td>
                     <td>${partType}</td>
@@ -225,11 +225,15 @@ async function searchApplicationSelect(onChange) {
     let partType = document.getElementById("part_type");
     let engine = document.getElementById("engine");
     let param1, param2, param3, param4, param5;
+
     param1 = year.value === "All" ? null : year.value
     param2 = make.value === "All" ? null : make.value
     param3 = model.value === "" ? null : model.value
     param5 = partType.value === "All" ? null : partType.value
     param4 = engine.value === "All" ? null : engine.value
+    if (param3 === null) {
+        return
+    }
     if (onChange.includes(["year"])) {
         make.innerHTML = "<option value='All'>All</option>";
         let makes = [];
@@ -376,7 +380,10 @@ async function searchInterchange(oem_part, oem_name, part_type) {
     } else if (part_type === "") {
         if (oem_part !== "") {
             let {data: data1, error: error1} = await _supabase.rpc('get_interchange_with_oem_part', {param1: oem_part});
-            let {data: data2, error: error2} = await _supabase.rpc('get_interchange_with_oem_part2', {param1: oem_part});
+            let {
+                data: data2,
+                error: error2
+            } = await _supabase.rpc('get_interchange_with_oem_part2', {param1: oem_part});
             data = data1.concat(data2)
         } else if (oem_name !== "") {
             let {data: data1, error} = await _supabase.rpc('get_interchange_bool', {col_name: oem_name});
@@ -412,12 +419,11 @@ document.getElementById("interchangeForm").addEventListener("submit", async func
     const part_type = this.part_type.value.trim();
     const errorMessage = document.getElementById('error-message');
 
-    if (oem_name==="" && oem_part===""){
+    if (oem_name === "" && oem_part === "") {
         event.preventDefault();
         errorMessage.textContent = "OEM part or OEM name at least one must be filled"
         return
     }
-
 
 
     // Start loading

@@ -409,11 +409,15 @@ document.getElementById("interchangeForm").addEventListener("submit", async func
     const oem_part = this.oem_part.value.trim();
     const oem_name = this.oem_name.value.trim();
     const part_type = this.part_type.value.trim();
+    const errorMessage = document.getElementById('error-message');
 
     if (oem_name==="" && oem_part===""){
-        this.oem_part.error("OEM part or OEM name at least one must be filled")
-        this.oem_name.error("OEM part or OEM name at least one must be filled")
+        event.preventDefault();
+        errorMessage.textContent = "OEM part or OEM name at least one must be filled"
+        return
     }
+
+
 
     // Start loading
     const submitButton = this.querySelector("input[type='submit']");

@@ -167,7 +167,7 @@ async function partNumber(partType, partNumber) {
     const resultsBodyApp = document.getElementById("resultsBodyApp");
     resultsBodyApp.innerHTML = '';
     const row = document.createElement('tr');
-    if (data[0]!=null && data[0]!=[]){
+    if (datas[0]!=null && datas[0]!=[]){
         row.innerHTML = `
                     <td><a onclick="partNumberDetailCall('mw','${datas[0]['mw']}',null,'${partType}')" href="#">${datas[0]['mw']}</a></td>
                     <td>${partType}</td>
@@ -381,7 +381,7 @@ async function searchInterchange(oem_part, oem_name, part_type) {
         } else if (oem_name !== "") {
             let {data: data1, error} = await _supabase.rpc('get_interchange_bool', {col_name: oem_name});
             data = data1
-        }  
+        }
     }
     if ($.fn.DataTable.isDataTable('#makeDetailTable')) {
         $('#resultsInterchange').DataTable().clear().destroy();

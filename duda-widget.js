@@ -167,11 +167,14 @@ async function partNumber(partType, partNumber) {
     const resultsBodyApp = document.getElementById("resultsBodyApp");
     resultsBodyApp.innerHTML = '';
     const row = document.createElement('tr');
-    row.innerHTML = `
+    if (data[0]!=null && data[0]!=[]){
+        row.innerHTML = `
                     <td><a onclick="partNumberDetailCall('mw','${datas[0]['mw']}',null,'${partType}')" href="#">${datas[0]['mw']}</a></td>
                     <td>${partType}</td>
                     <td>${datas[0]['Type'] ?? ''}</td>
                 `;
+    }
+
     resultsBody.appendChild(row);
 
     try {
@@ -224,7 +227,7 @@ async function searchApplicationSelect(onChange) {
     let param1, param2, param3, param4, param5;
     param1 = year.value === "All" ? null : year.value
     param2 = make.value === "All" ? null : make.value
-    param3 = model.value === "All" ? null : model.value
+    param3 = model.value === "" ? null : model.value
     param5 = partType.value === "All" ? null : partType.value
     param4 = engine.value === "All" ? null : engine.value
     if (onChange.includes(["year"])) {
@@ -371,16 +374,14 @@ async function searchInterchange(oem_part, oem_name, part_type) {
             }
         }
     } else if (part_type === "") {
-        if (oem_name !== "") {
+        if (oem_part !== "") {
+            let {data: data1, error: error1} = await _supabase.rpc('get_interchange_with_oem_part', {param1: oem_part});
+            let {data: data2, error: error2} = await _supabase.rpc('get_interchange_with_oem_part2', {param1: oem_part});
+            data = data1.concat(data2)
+        } else if (oem_name !== "") {
             let {data: data1, error} = await _supabase.rpc('get_interchange_bool', {col_name: oem_name});
             data = data1
-        } else if (oem_part !== "") {
-            let {data: data1, error: error1} = await _supabase.rpc('get_interchange_with_oem_part', {param1: oem_part});
-            let {
-                data: data2, error: error2
-            } = await _supabase.rpc('get_interchange_with_oem_part2', {param1: oem_part});
-            data = data1.concat(data2)
-        }
+        }  
     }
     if ($.fn.DataTable.isDataTable('#makeDetailTable')) {
         $('#resultsInterchange').DataTable().clear().destroy();

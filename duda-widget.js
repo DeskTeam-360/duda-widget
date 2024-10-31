@@ -166,16 +166,18 @@ async function partNumber(partType, partNumber) {
     resultsBody.innerHTML = '';
     const resultsBodyApp = document.getElementById("resultsBodyApp");
     resultsBodyApp.innerHTML = '';
-    const row = document.createElement('tr');
+
     if (datas[0] != null && datas[0] != []) {
+        const row = document.createElement('tr');
         row.innerHTML = `
                     <td><a onclick="partNumberDetailCall('mw','${datas[0]['mw']}',null,'${partType}')" href="#">${datas[0]['mw']}</a></td>
                     <td>${partType}</td>
                     <td>${datas[0]['Type'] ?? ''}</td>
-                `;
+               `;
+        resultsBody.appendChild(row);
     }
 
-    resultsBody.appendChild(row);
+
 
     try {
         $('#resultsTable').DataTable({

@@ -584,8 +584,9 @@ document.getElementById("specification-specification-type").addEventListener("ch
 
 async function spesificationComparation(rpc) {
     let {data, error: e} = await _supabase.rpc(rpc);
-    document.getElementById("spec1").innerHTML = data.map(item => `<option value="${item['data']}">${item['data']}</option>`).join('');
-    document.getElementById("spec2").innerHTML = data.map(item => `<option value="${item['data']}">${item['data']}</option>`).join('');
+    const datas= data.map(item => `<option value="${item['data']}">${item['data']}</option>`).join('');
+    document.getElementById("spec1").innerHTML =datas 
+    document.getElementById("spec2").innerHTML = datas
 }
 
 document.getElementById("specification-comparison").addEventListener("change", function (event) {

@@ -584,14 +584,8 @@ document.getElementById("specification-specification-type").addEventListener("ch
 
 async function spesificationComparation(rpc) {
     let {data, error: e} = await _supabase.rpc(rpc);
-    const part1 = document.getElementById("spec1");
-    const part2 = document.getElementById("spec2");
-    part1.innerHTML = ``
-    part2.innerHTML = ``
-    data.map((item, i) => {
-        part1.innerHTML += `<option value="${item['data']}">${item['data']}</option>`
-        part2.innerHTML += `<option value="${item['data']}">${item['data']}</option>`
-    })
+    document.getElementById("spec1").innerHTML = data.map(item => `<option value="${item['data']}">${item['data']}</option>`).join('');
+    document.getElementById("spec2").innerHTML = data.map(item => `<option value="${item['data']}">${item['data']}</option>`).join('');
 }
 
 document.getElementById("specification-comparison").addEventListener("change", function (event) {
@@ -617,8 +611,8 @@ document.getElementById("specificationForm").addEventListener("submit", async fu
         errorMessage.textContent = "All field must be filled"
         return
     }
-    
-    
+
+
     // Start loading
     const submitButton = this.querySelector("input[type='submit']");
     const spinner = this.querySelector(".spinner-border");

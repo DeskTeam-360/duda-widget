@@ -197,6 +197,15 @@ document.getElementById("searchForm").addEventListener("submit", async function 
     //     this.part_number.error("This")
     //     return
     // }
+    const errorMessage = document.getElementById('error-message1');
+    errorMessage.textContent = ""
+    if (pNumber==="") {
+        event.preventDefault();
+        errorMessage.textContent = "Part Number must be filled"
+        return
+    }
+
+
     if (pType === "All") {
         if (pNumber.charAt(0) === "W") {
             pType = "Valve Seat";
@@ -296,6 +305,14 @@ document.getElementById("searchApplication").addEventListener("submit", function
     const engine = this.engine.value.trim();
     const data = searchApplication(year, make, model, part_type, engine);
     const results = document.getElementById("resultsMakeDetail");
+
+    const errorMessage = document.getElementById('error-message2');
+    errorMessage.textContent = ""
+    if (model==="") {
+        event.preventDefault();
+        errorMessage.textContent = "Model must be filled"
+        return
+    }
 
 
     // Start loading
@@ -446,7 +463,7 @@ document.getElementById("interchangeForm").addEventListener("submit", async func
     const oem_name = this.oem_name.value.trim();
     const part_type = this.part_type.value.trim();
     const errorMessage = document.getElementById('error-message');
-
+    errorMessage.textContent = ""
     if (oem_name === "" && oem_part === "") {
         event.preventDefault();
         errorMessage.textContent = "OEM part or OEM name at least one must be filled"
@@ -593,6 +610,15 @@ document.getElementById("specificationForm").addEventListener("submit", async fu
     const head = document.getElementById("headResultSpecification");
     const body = document.getElementById("bodyResultSpecification");
 
+    const errorMessage = document.getElementById('error-message4');
+    errorMessage.textContent = ""
+    if (partType.value === "" || specificationType.value === ""||comparison.value==="" || spec1.value==="") {
+        event.preventDefault();
+        errorMessage.textContent = "All field must be filled"
+        return
+    }
+    
+    
     // Start loading
     const submitButton = this.querySelector("input[type='submit']");
     const spinner = this.querySelector(".spinner-border");

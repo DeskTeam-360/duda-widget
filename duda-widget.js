@@ -360,7 +360,8 @@ async function searchInterchange(oem_part, oem_name, part_type) {
                 let {data: data1, error} = await _supabase.rpc('get_interchange_with_oem_part', {param1: oem_part});
                 for (const data1Element in data1) {
                     if (data1[data1Element]['oemname']!==oem_name){
-                        data1.slice(data1Element,1)
+                        delete data1[data1Element]
+                        console.log(data1,data1[data1Element]['oemname'],oem_name)
                     }
                     console.log(data1,data1[data1Element]['oemname'],oem_name)
                 }
@@ -386,6 +387,8 @@ async function searchInterchange(oem_part, oem_name, part_type) {
                 for (const data1Element in data1) {
                     if (data1[data1Element]['oemname']!==oem_name){
                         data1.slice(data1Element,1)
+                        delete data1[data1Element]
+                        console.log(data1,data1[data1Element]['oemname'],oem_name)
                     }
                     console.log(data1,data1[data1Element]['oemname'],oem_name)
                 }
@@ -400,12 +403,16 @@ async function searchInterchange(oem_part, oem_name, part_type) {
             for (const data1Element in data1) {
                 if (data1[data1Element]['oemname']!==oem_name){
                     data1.slice(data1Element,1)
+                    delete data1[data1Element]
+                    console.log(data1,data1[data1Element]['oemname'],oem_name)
                 }
                 console.log(data1,data1[data1Element]['oemname'],oem_name)
             }
             for (const data2Element in data2) {
                 if (data2[data2Element]['oemname']!==oem_name){
                     data2.slice(data2Element,1)
+                    delete data2[data2Element]
+                    console.log(data2,data2[data2Element]['oemname'],oem_name)
                 }
                 console.log(data2,data2[data2Element]['oemname'],oem_name)
             }

@@ -359,10 +359,9 @@ async function searchInterchange(oem_part, oem_name, part_type) {
             } else {
                 let {data: data1, error} = await _supabase.rpc('get_interchange_with_oem_part', {param1: oem_part});
                 for (const data1Element in data1) {
-                    if (data1[data1Element]['col']!==oem_part){
+                    if (data1[data1Element]['oemname']!==oem_name){
                         data1.slice(data1Element,1)
                     }
-                    console.log(data1,data1[data1Element]['col'],oem_part)
                 }
                 data = data1
 
@@ -384,10 +383,9 @@ async function searchInterchange(oem_part, oem_name, part_type) {
             } else {
                 let {data: data1, error} = await _supabase.rpc('get_interchange_with_oem_part2', {param1: oem_part});
                 for (const data1Element in data1) {
-                    if (data1[data1Element]['col']!==oem_part){
+                    if (data1[data1Element]['oemname']!==oem_name){
                         data1.slice(data1Element,1)
                     }
-                    console.log(data1,data1[data1Element]['col'],oem_part)
                 }
                 data = data1
 
@@ -398,13 +396,12 @@ async function searchInterchange(oem_part, oem_name, part_type) {
             let {data: data1, error: error1} = await _supabase.rpc('get_interchange_with_oem_part', {param1: oem_part});
             let {data: data2, error: error2} = await _supabase.rpc('get_interchange_with_oem_part2', {param1: oem_part});
             for (const data1Element in data1) {
-                if (data1[data1Element]['col']!==oem_part){
+                if (data1[data1Element]['oemname']!==oem_name){
                     data1.slice(data1Element,1)
                 }
-                console.log(data1,data1[data1Element]['col'],oem_part)
             }
             for (const data2Element in data2) {
-                if (data2[data2Element]['col']!==oem_part){
+                if (data2[data2Element]['oemname']!==oem_name){
                     data2.slice(data2Element,1)
                 }
             }

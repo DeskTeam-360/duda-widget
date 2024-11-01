@@ -491,7 +491,7 @@ document.getElementById("specification-part-type").addEventListener("change", fu
     const part2 = document.getElementById("specification-specification-type");
     if (part.value === "Valve Seat") {
         part2.innerHTML = `
-        <option value=""></option>
+        <option value="">Choose Specification Type</option>
         <option value="id_part">I.D.</option>
         <option value="exact_od">Exact O.D</option>
         <option value="depth">Depth</option>
@@ -501,7 +501,7 @@ document.getElementById("specification-part-type").addEventListener("change", fu
         `;
     } else if (part.value === "Valves") {
         part2.innerHTML = `
-        <option value=""></option>
+        <option value="">Choose Specification Type</option>
         <option value="chrome_or_nitrided">Chrome or Nitrated</option>
         <option value="head_diameter">Head Diameter</option>
         <option value="length">Length</option>
@@ -585,7 +585,7 @@ document.getElementById("specification-specification-type").addEventListener("ch
 async function spesificationComparation(rpc) {
     let {data, error: e} = await _supabase.rpc(rpc);
     const datas= data.map(item => `<option value="${item['data']}">${item['data']}</option>`).join('');
-    document.getElementById("spec1").innerHTML =datas 
+    document.getElementById("spec1").innerHTML =datas
     document.getElementById("spec2").innerHTML = datas
 }
 
@@ -634,7 +634,6 @@ document.getElementById("specificationForm").addEventListener("submit", async fu
             <th>I.D.</th>
             <th>I.D. Top Taper</th>
             <th>O.D.</th>
-            <th>Seat Angle</th>
             <th>Depth</th>
             <th>Seat Angle</th>
             <th>Exact O.D</th>
@@ -692,7 +691,6 @@ document.getElementById("specificationForm").addEventListener("submit", async fu
                     <td>${item['id_part']}</td>
                     <td>${item['id_top_taper']}</td>
                     <td>${item['od']}</td>
-                    <td>${item['seat_angle']}</td>
                     <td>${item['depth']}</td>
                     <td>${item['seat_angle']}</td>
                     <td>${item['exact_od']}</td>

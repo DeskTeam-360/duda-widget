@@ -362,6 +362,7 @@ async function searchInterchange(oem_part, oem_name, part_type) {
                     if (data1[data1Element]['col']!==oem_part){
                         data1.slice(data1Element,1)
                     }
+                    console.log(data1,data1[data1Element]['col'],oem_part)
                 }
                 data = data1
 
@@ -386,6 +387,7 @@ async function searchInterchange(oem_part, oem_name, part_type) {
                     if (data1[data1Element]['col']!==oem_part){
                         data1.slice(data1Element,1)
                     }
+                    console.log(data1,data1[data1Element]['col'],oem_part)
                 }
                 data = data1
 
@@ -399,6 +401,7 @@ async function searchInterchange(oem_part, oem_name, part_type) {
                 if (data1[data1Element]['col']!==oem_part){
                     data1.slice(data1Element,1)
                 }
+                console.log(data1,data1[data1Element]['col'],oem_part)
             }
             for (const data2Element in data2) {
                 if (data2[data2Element]['col']!==oem_part){

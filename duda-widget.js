@@ -593,6 +593,8 @@ document.getElementById("specification-comparison").addEventListener("change", f
     const comparison = document.getElementById("specification-comparison");
     if (comparison.value === "between") {
         document.getElementById("specification2").style.display = `block`
+    }else{
+        document.getElementById("specification2").style.display = `none`
     }
 });
 document.getElementById("specificationForm").addEventListener("submit", async function (event) {
